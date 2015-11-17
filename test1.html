@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Test1</title>
+<style id="style-1-cropbar-clipper">
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+
+<body>
+
+<div role="application"> 
+
+  <div id="guess1" class="guess"> 
+    <h2>猜数游戏</h2> 
+   
+  <p><strong>Instructions:</strong> In this game you guess a number between 1 an 10 and then press the "Check My Guess" button to check your responses.   
+    An <abbr title="Accessible Rich Internet Application">ARIA</abbr> dialog box will display the results of your guess.  To start over again to press the "Play Again" button.</p> 
+
+  <p class="input"> 
+    <label id="guess1_label" for="guess1_text">Guess a number between 1 and 10</label> 
+    <input type="text" id="guess1_text" size="3" aria-labelledby="guess1_label" aria-invalid="false"/> 
+  </p> 
+
+  <p id="guess1_alert" role="alert" class="feedback"></p> 
+
+  <p class="input">     
+    <input class="button" id="guess1_check" type="button" value="Check My Guess"/> 
+    <input class="button" id="guess1_again" type="button" value="Play Again"/> 
+  </p> 
+</div> 
+
+</div> 
+
+
+
+
+
+
+
+
+
+<h1>图像支持测试</h1>
+
+<h2>测试1，这是一个图像测试，未使用任何辅助标签，你得到的结果是什么？</h2>
+<img src="1.jpg" >
+<p>结果是：</p>
+
+<h2>测试2，使用 aria-labelledby 标签，你得到的结果是什么</h2>
+<img src="1.jpg" aria-labelledby="dog_id">
+<p>这是一张有着<span id="dog_id">两只宠物狗</span>的图片</p>
+<p>结果是：</p>
+
+<h2>测试3，可以通过 aria-labelledby 提取多个id的值</h2>
+<h4 id="b1">哈士奇</h4>
+<p><img src="1.jpg" id="b1 a1"> </p>
+<p>两只<span id="b1">宠物狗</span></p>
+<p>结果是：</p>
+
+<h2>测试4，也可以直接用 aria-label </h2>
+<p><img src="1.jpg" aria-label="宠物狗"></p>
+
+
+
+
+
+
+
+
+</body></html>

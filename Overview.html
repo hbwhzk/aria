@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="Zh_CN" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>W3C Web无障碍相关标准化情况介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content=
+"Copyright &#169; 2015 W3C <sup>&#xAE;</sup> (MIT, ERCIM, Keio, Beihang)" />
+<meta name="duration" content="40" />
+<!--<meta name="font-size-adjustment" content="-2" />-->
+<link rel="stylesheet" href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" type="text/css" />
+<link rel="stylesheet" href="http://www.w3.org/Talks/Tools/Slidy2/styles/w3c-blue.css" type="text/css" />
+<script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript">
+</script>
+</head>
+<body>
+<div class="background"><img alt="" id="head-icon"
+src="http://www.w3.org/Talks/Tools/Slidy2/graphics/icon-blue.png" /><object id="head-logo"
+data="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-white.svg" type="image/svg+xml"
+title="W3C logo"><a href="http://www.w3.org/"><img
+alt="W3C logo" id="head-logo-fallback"
+src="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-white.gif" /></a></object></div>
+
+<div class="background slanty">
+<img src="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-slanted.jpg" alt="slanted W3C logo" />
+</div>
+<div class="slide cover title">
+  <!-- hidden style graphics to ensure they are saved with other content -->
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/bullet.png" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/fold.gif" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/unfold.gif" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/fold-dim.gif" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/nofold-dim.gif" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/unfold-dim.gif" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/bullet-fold.gif" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/bullet-unfold.gif" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/bullet-fold-dim.gif" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/bullet-nofold-dim.gif" alt="" />
+  <img class="hidden" src="http://www.w3.org/Talks/Tools/Slidy2/graphics/bullet-unfold-dim.gif" alt="" />
+
+<img src="http://www.w3.org/Talks/Tools/Slidy2/graphics/keys2.jpg" alt="封面图片"
+ class="cover" />
+  <h1 style="margin-top: 20%;">WAI-ARIA 基础学习及实践分析</h1>
+
+  <p><a href="http://www.w3.org/People/#hbwhzk">张昆</a> <br/>
+    <a href="http://www.w3.org/">World Wide Web Consortium</a><br/>
+  </p>
+</div>
+
+<div class="slide slanty"> 
+  <h1>介绍WAI-AIRA</h1>
+  <h3></h3>
+  <ul>
+    <li>WAI-ARIA 提供无障碍访问动态、可交互 Web 内容的技术规范</li>
+	<li>定义了可以获得更广泛跨平台可访问性的方法。</li>
+    <li>浏览器、媒体播放器、辅助技术、 Web 内容开发者，可以使用其开发更为无障碍的服务及产品</li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>目标及准备工作</h1>
+  <h3></h3>
+  <ul>
+    <li>虽然WAI-AIRA非常强大，但是一些浏览器及辅助工具并不支持，尤其是在国内</li>
+    <li>本次学习延续上次的WCAG 2.0的课程，如何运用WAI-ARIA帮助网站内容实现WCAG 2.0</li>
+    <li>主要以HTML4为基础案例，也会包含HTML5，CSS，JavaScript</li>
+    <li>实践
+      <ul>
+        <li>测试</li>
+        <li>新建</li>
+        <li>分析</li>
+        <li>改进</li>
+      </ul>
+    </li>
+    <li>准备 
+      <ul>
+        <li>OS平台</li>
+        <li>VoiceOver</li>
+        <li>Chrome （OS平台、iOS平台、Android平台）</li>
+        <li>Firefox（OS平台、iOS平台、Android平台）</li>
+        <li>Talkback</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>使用 tabindex 定义导航顺序</h1>
+  <ul>
+    <li>使用键盘时，tabindex用以定位html元素</li>
+    <li>aria允许tabindex指定给任何html元素 
+      <ul>
+        <li>当tabindex=0时，该元素可以用tab键获取焦点，默认按照html文档中的顺序来定位。</li>
+        <li>当tabindex=-1时，该元素用tab键获取不到焦点，但是可以通过js获取，这样就便于我们通过js设置上下左右键的响应事件来focus，在widget内部可以用到。</li>
+        <li>当tabindex>=1时，该元素可以用tab键获取焦点，而且优先级大于tabindex=0；不过在tabindex>=1时，数字越小，越先定位到。</li>
+      </ul>
+    <li>测试一段代码，试着在新的html页面中复制代码，用读屏软件在浏览器访问。</li>
+    <pre>&lt;a href=&quot;http://www.w3.org/&quot; tabindex=&quot;2&quot;&gt;W3C&lt;/a&gt;<br />&lt;a href=&quot;http://www.chinaw3.org/&quot; tabindex=&quot;1&quot;&gt;W3C China&lt;/a&gt;<br />&lt;a href=&quot;http://www.baidu.com/&quot; tabindex=&quot;3&quot;&gt;baidu&lt;/a&gt;
+	</pre>
+    <li>现在，试着修改tabindex的值</li>
+  </ul>
+</div>	
+
+<div class="slide slanty"> 
+  <h1>使用 aria-describedby 属性为用户界面控件提供介绍性信息</h1>
+  <h3></h3>   
+  <ul>
+    <li>案例1：</li>
+    <pre>&lt;button aria-label=&quot;Close&quot; aria-describedby=&quot;descriptionClose&quot; onclick=&quot;myDialog.close()&quot;&gt;X&lt;/button&gt;
+&lt;div id=&quot;descriptionClose&quot;&gt;关闭该窗口将中断信息并返回主页&lt;/div&gt;</pre>
+    <li>案例2：</li>
+    <pre>&lt;form&gt;<br />&lt;label for=&quot;fname&quot;&gt;姓名&lt;/label&gt;<br />&lt;input name=&quot;&quot; type=&quot;text&quot; id=&quot;fname&quot; aria-describedby=&quot;int2&quot;&gt;<br />&lt;p id=&quot;int2&quot;&gt;请填写你的姓名&lt;/p&gt;<br />&lt;/form&gt;
+	</pre>
+    <li>案例3：</li>
+    <pre>&lt;p&gt;&lt;span id=&quot;fontDesc&quot;&gt;选择该页面的字体与大小&lt;/span&gt;<br />&lt;button id=&quot;fontB&quot; onclick=&quot;doAction('Fonts');&quot; aria-describedby=&quot;fontDesc&quot;&gt;字体&lt;/button&gt;<br />&lt;/p&gt;<br />&lt;p&gt;&lt;span id=&quot;colorDesc&quot;&gt;选择该页面的颜色&lt;/span&gt;<br />&lt;button id=&quot;colorB&quot; onclick=&quot;doAction('Colors');&quot; aria-describedby=&quot;colorDesc&quot;&gt;颜色&lt;/button&gt;<br />&lt;/p&gt;<br />&lt;p&gt;&lt;span id=&quot;customDesc&quot;&gt;定义该页的布局与样式&lt;/span&gt;<br />&lt;button id=&quot;customB&quot; onclick=&quot;doAction('Customize');&quot; aria-describedby=&quot;customDesc&quot;&gt;自定义&lt;/button&gt;<br />&lt;/p&gt;</pre>
+    <li>测试与实践：分别新建hmtl页面，并测试这三段代码。</li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>使用aria-required 属性定义必须填写的域</h1>
+  <h3></h3>
+  <ul>
+    <li>案例</li>
+    <pre class="folded">&lt;form action=&quot;#&quot; method=&quot;post&quot; id=&quot;step1&quot; onsubmit=&quot;return errorCheck2()&quot;&gt;<br />  &lt;p&gt;<br />    &lt;label for=&quot;fname&quot;&gt;姓: &lt;/label&gt;<br />    &lt;input type=&quot;text&quot; id=&quot;fname&quot; aria-required=&quot;true&quot; /&gt;<br />    [required]<br />  &lt;/p&gt;<br />  &lt;p&gt;<br />    &lt;label for=&quot;lname&quot;&gt;名: &lt;/label&gt;<br />    &lt;input type=&quot;text&quot; id=&quot;lname&quot; aria-required=&quot;true&quot; /&gt;<br />    [required]<br />  &lt;/p&gt;<br />  &lt;p&gt;<br />    &lt;label for=&quot;email&quot;&gt;Email: &lt;/label&gt;<br />    &lt;input type=&quot;text&quot; id=&quot;email&quot; aria-required=&quot;true&quot; /&gt;<br />    [required]<br />  &lt;/p&gt;<br />  &lt;p&gt;<br />    &lt;label for=&quot;zip_post&quot;&gt;邮政编码: &lt;/label&gt;<br />    &lt;input type=&quot;text&quot; id=&quot;zip_post&quot; size=&quot;6&quot; aria-required=&quot;true&quot; /&gt;<br />    [required]<br />  &lt;/p&gt;<br />  &lt;p&gt;<br />    &lt;input type=&quot;submit&quot; value=&quot;下一步&quot; id=&quot;step_btn&quot; name=&quot;step_btn&quot; /&gt;<br />  &lt;/p&gt;<br />&lt;/form&gt; </pre>
+    <li></li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>通过 WAI-ARIA Role 了解界面组件结构</h1>
+  <h3></h3>
+  <ul>
+    <li>tree, treeitem, group 三个角色</li>
+    <pre>&lt;ul role=&quot;tree&quot; tabindex=&quot;0&quot;&gt;<br />  &lt;li role=&quot;treeitem&quot;&gt;鸟&lt;/li&gt;<br />  &lt;li role=&quot;treeitem&quot;&gt;猫<br />    &lt;ul role=&quot;group&quot;&gt;<br />      &lt;li role=&quot;treeitem&quot;&gt;暹罗猫&lt;/li&gt;<br />      &lt;li role=&quot;treeitem&quot;&gt;虎斑猫&lt;/li&gt;<br />    &lt;/ul&gt;<br />  &lt;/li&gt;<br />  &lt;li role=&quot;treeitem&quot;&gt;狗<br />    &lt;ul role=&quot;group&quot;&gt;<br />      &lt;li role=&quot;treeitem&quot;&gt;小类<br />        &lt;ul role=&quot;group&quot;&gt;<br />          &lt;li role=&quot;treeitem&quot;&gt;吉娃娃&lt;/li&gt;<br />          &lt;li role=&quot;treeitem&quot;&gt;意大利灵缇犬&lt;/li&gt;<br />          &lt;li role=&quot;treeitem&quot;&gt;日本柴犬&lt;/li&gt;<br />        &lt;/ul&gt;<br />      &lt;/li&gt;<br />      &lt;li role=&quot;treeitem&quot;&quot;&gt;中类<br />        &lt;ul role=&quot;group&quot;&gt;<br />          &lt;li role=&quot;treeitem&quot;&gt;比格猎犬&lt;/li&gt;<br />          &lt;li role=&quot;treeitem&quot;&gt;可卡犬&lt;/li&gt;<br />          &lt;li role=&quot;treeitem&quot;&gt;斗牛犬&lt;/li&gt;<br />        &lt;/ul&gt;<br />      &lt;/li&gt;<br />      &lt;li role=&quot;treeitem&quot;&gt;大类<br />        &lt;ul role=&quot;group&quot;&gt;<br />          &lt;li role=&quot;treeitem&quot;&gt;阿富汗犬&lt;/li&gt;<br />          &lt;li role=&quot;treeitem&quot;&gt;大丹犬&lt;/li&gt;<br />          &lt;li role=&quot;treeitem&quot;&gt;英国獒犬&lt;/li&gt;<br />        &lt;/ul&gt;<br />      &lt;/li&gt;<br />    &lt;/ul&gt;<br />  &lt;/li&gt;<br />&lt;/ul&gt;</pre>
+    <li>测试与实践：新建hmtl页面，并测试这段代码。</li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>使用 aria-label 为 Object 提供标签</h1>
+  <h3></h3>
+  <ul>
+    <li>案例1：</li>
+    <pre>&lt;div role=&quot;navigation&quot; aria-label=&quot;主要问题&quot;&gt;<br />&lt;ul&gt;&lt;li&gt;AAAAAAAAAA&lt;/li&gt;&lt;/ul&gt; &lt;/div&gt;<br />&lt;div role=&quot;navigation&quot; aria-label=&quot;次要问题&quot;&gt;<br />&lt;ul&gt;&lt;li&gt;BBBBBBBBBB&lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;</pre>
+    <li>案例2：</li>
+    <pre>&lt;div role=&quot;region&quot; aria-label=&quot;天气预报&quot;&gt; <br />...<br />&lt;/div&gt;</pre>
+    <li>案例3：</li>
+    <pre>&lt;div role=&quot;math&quot; aria-label=&quot;6除以4等于1.5&quot;&gt;<br />  &lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;<br />    &lt;mfrac&gt;<br />      &lt;mn&gt;6&lt;/mn&gt;<br />      &lt;mn&gt;4&lt;/mn&gt;<br />    &lt;/mfrac&gt;<br />    &lt;mo&gt;=&lt;/mo&gt;<br />    &lt;mn&gt;1.5&lt;/mn&gt;<br />  &lt;/math&gt;<br />&lt;/div&gt;</pre>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>通过 aria-labelledby 为链接目标提供信息</h1>
+  <h3></h3>
+  <ul>
+    <li>案例1：</li>
+    <pre>&lt;h2 id=&quot;headline&quot;&gt;APEC&lt;/h2&gt;
+&lt;p&gt;习近平抵马尼拉出席APEC会议<br />&lt;a id=&quot;p123&quot; href=&quot;news.html&quot; aria-labelledby=&quot;p123 headline&quot;&gt;点击了解更多&lt;/a&gt;&lt;/p&gt;</pre>
+    <li>案例2：</li>
+    <pre>&lt;p&gt;下载 &lt;span id=&quot;report-title&quot; tabindex=&quot;-1&quot;&gt;2015 销售报告&lt;/span&gt;:<br />&lt;a aria-labelledby=&quot;report-title pdf&quot; href=&quot;#&quot; id=&quot;pdf&quot;&gt;PDF&lt;/a&gt; |<br />&lt;a aria-labelledby=&quot;report-title doc&quot; href=&quot;#&quot; id=&quot;doc&quot;&gt;Word&lt;/a&gt; |<br />&lt;a aria-labelledby=&quot;report-title ppt&quot; href=&quot;#&quot; id=&quot;ppt&quot;&gt;Powerpoint&lt;/a&gt;&lt;/p&gt;</pre>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>通过 aria-label 为链接目标提供信息</h1>
+  <h3></h3>
+  <ul>
+    <li>案例1：</li>
+    <pre> &lt;h4&gt;APEC&lt;/h4&gt;<br /> &lt;p&gt;习近平抵马尼拉出席APEC会议<br /> &lt;a href=&quot;news.html&quot; aria-label=&quot;点击了解更多 习近平抵马尼拉出席APEC会议&quot;&gt;[点击了解更多]&lt;/a&gt;<br /> &lt;/p&gt; </pre>
+    <li>分析比较与aria-labelledby的不同</li>
+  </ul>
+</div>
+
+
+
+<div class="slide slanty"> 
+  <h1>使用landmark定义网页内容的位置</h1>
+  <h3></h3>
+  <ul>
+    <li>案例1:</li>
+    <pre>&lt;div id=&quot;header&quot; role=&quot;banner&quot;&gt;A区域&lt;/div&gt;<br />&lt;div id=&quot;sitelookup&quot; role=&quot;search&quot;&gt;B区域&lt;/div&gt;<br />&lt;div id=&quot;nav&quot; role=&quot;navigation&quot;&gt;C区域&lt;/div&gt;<br />&lt;div id=&quot;content&quot; role=&quot;main&quot;&gt;D区域&lt;/div&gt;<br />&lt;div id=&quot;rightsideadvert&quot; role=&quot;complementary&quot;&gt;E区域&lt;/div&gt;<br />&lt;div id=&quot;footer&quot; role=&quot;contentinfo&quot;&gt;F区域&lt;/div&gt;</pre>
+    <li>案例2：</li>
+    <pre>&lt;div id=&quot;leftnav&quot; role=&quot;navigaton&quot; aria-labelledby=&quot;leftnavheading&quot;&gt;<br />&lt;h2 id=&quot;leftnavheading&quot;&gt;A区域&lt;/h2&gt;<br />&lt;ul&gt;&lt;li&gt;链接列表&lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;<br />&lt;div id=&quot;rightnav&quot; role=&quot;navigation&quot; aria-labelledby=&quot;rightnavheading&quot;&gt;<br />&lt;h2 id=&quot;rightnavheading&quot;&gt;B区域&lt;/h2&gt;<br />&lt;ul&gt;&lt;li&gt;链接列表&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</pre>
+    <li>案例3：</li>
+    <pre>&lt;div id=&quot;leftnav&quot; role=&quot;navigaton&quot; aria-label=&quot;主要&quot;&gt;<br />&lt;ul&gt;&lt;li&gt;链接列表&lt;/li&gt;&lt;/ul&gt; &lt;/div&gt;<br />&lt;div id=&quot;rightnav&quot; role=&quot;navigation&quot; aria-label=&quot;次要&quot;&gt;<br />&lt;ul&gt;&lt;li&gt;链接列表&lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;</pre>
+    <li>案例4：</li>
+    <pre>&lt;form role=&quot;search&quot;&gt;<br />&lt;label for=&quot;s6&quot;&gt;搜索&lt;/label&gt;&lt;input id=&quot;s6&quot; type=&quot;text&quot; size=&quot;20&quot;&gt;<br />...<br />&lt;/form&gt; </pre>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>使用 role=heading 定义标题</h1>
+  <h3></h3>
+  <ul>
+    <li>案例1：</li>
+    <pre>&lt;div role=&quot;heading&quot;&gt;国内新闻&lt;/div&gt;<br />国内新闻列表<p>&lt;div role=&quot;heading&quot;&gt;国际新闻&lt;/div&gt;
+国际新闻列表</p></pre>
+    <li>案例2：</li>
+    <pre>&lt;h5&gt;标题A&lt;/h5&gt;<br />&lt;p&gt;相关内容&lt;/p&gt;<br />&lt;h6&gt;标题B&lt;/h6&gt;<br />&lt;p&gt;相关内容&lt;/p&gt;<br />&lt;div role=&quot;heading&quot; aria-level=&quot;7&quot;&gt;标题C&lt;/div&gt;<br />&lt;p&gt;相关内容&lt;/p&gt;</pre>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>使用 aria-labelledby 明确区域与地标</h1>
+  <h3></h3>
+  <ul>
+    <li>案例1：</li>
+    <pre>&lt;p role=&quot;complementary&quot; aria-labelledby=&quot;hdr1&quot;&gt;<br /> &lt;h1 id=&quot;hdr1&quot;&gt;<br />    新闻头条<br /> &lt;/h1&gt;<br />&lt;/p&gt;</pre>
+    <li>案例2：</li>
+    <pre>&lt;div role=&quot;application&quot; aria-labelledby=&quot;p123&quot; aria-describedby=&quot;info&quot;&gt;<br />&lt;h1 id=&quot;p123&quot;&gt;日程&lt;h1&gt;<br />&lt;p id=&quot;info&quot;&gt;<br />会议相关日程及安排<br />&lt;/p&gt;<br />&lt;div role=&quot;grid&quot;&gt;<br />....<br />&lt;/div&gt;</pre>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>使用 aria-label 为非可视化的标签提供信息</h1>
+  <h3></h3>
+  <ul>
+    <li>案例1：</li>
+    <pre></pre>
+    <li></li>
+	<pre></pre>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>Using ARIA landmarks to identify regions of a page</h1>
+  <h3></h3>
+  <ul>
+    <li>案例</li>
+    <pre></pre>
+    <li></li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1></h1>
+  <h3></h3>
+  <ul>
+    <li>案例</li>
+    <pre></pre>
+    <li></li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1></h1>
+  <h3></h3>
+  <ul>
+    <li>案例</li>
+    <pre></pre>
+    <li></li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1></h1>
+  <h3></h3>
+  <ul>
+    <li>案例</li>
+    <pre></pre>
+    <li></li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1></h1>
+  <h3></h3>
+  <ul>
+    <li>案例</li>
+    <pre></pre>
+    <li></li>
+  </ul>
+</div>
+
+
+
+
+
+<div class="slide slanty"> 
+  <h1>案例分析</h1>
+  <h3></h3>
+  <ul>
+    <li>请尝试如下案例，并查找如下属性。 
+      <ul>
+        <li>ARIA 1.0: [aria-invalid] </li>
+        <li>ARIA 1.0: [aria-labelledby]</li>
+        <li>ARIA 1.0: [role="alert"]</li>
+        <li>ARIA 1.0: [role="application"]</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>案例分析</h1>
+  <h3></h3>
+  <ul>
+    <li>请尝试玩这个游戏，并检查如下属性。 
+      <ul>
+        <li>ARIA 1.0: [aria-dropeffect]</li>
+        <li>ARIA 1.0: [aria-grabbed]</li>
+        <li>ARIA 1.0: [aria-labelledby]</li>
+        <li>ARIA 1.0: [aria-selected]</li>
+        <li>ARIA 1.0: [role=&quot;alert&quot;]</li>
+        <li>ARIA 1.0: [role=&quot;application&quot;]</li>
+        <li>ARIA 1.0: [role=&quot;button&quot;]</li>
+        <li>ARIA 1.0: [role=&quot;grid&quot;]</li>
+        <li>ARIA 1.0: [role=&quot;gridcell&quot;]</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>
