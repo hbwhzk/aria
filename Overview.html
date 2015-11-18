@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="Zh_CN" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>W3C Web无障碍相关标准化情况介绍</title>
+<title>WAI-ARIA 基础学习及实践分析</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="copyright" content=
 "Copyright &#169; 2015 W3C <sup>&#xAE;</sup> (MIT, ERCIM, Keio, Beihang)" />
@@ -48,12 +48,94 @@ src="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-white.gif" /></a></o
 </div>
 
 <div class="slide slanty"> 
-  <h1>介绍WAI-AIRA</h1>
+  <h1>介绍WAI-ARIA</h1>
   <h3></h3>
   <ul>
     <li>WAI-ARIA 提供无障碍访问动态、可交互 Web 内容的技术规范</li>
 	<li>定义了可以获得更广泛跨平台可访问性的方法。</li>
     <li>浏览器、媒体播放器、辅助技术、 Web 内容开发者，可以使用其开发更为无障碍的服务及产品</li>
+  </ul>
+</div>
+
+<div class="slide slanty"> 
+  <h1>WAI-ARIA </h1>
+  <h3>中文译名：可及性富互联网应用 1.0，已发布为W3C推荐标准</h3>
+    <ul>
+	<li>让动态Web内容更无障碍 
+      <ul>
+        <li>定义了可以描述widget和网页结构的角色</li>
+        <li>拖拽类的资源、目标的属性界定 </li>
+        <li>为Web对象和事件提供键盘导航</li>
+      </ul>
+    </li>
+    <li>已开发的相应支持文档 
+      
+    <ul>
+      <li><a href="http://www.w3.org/TR/wai-aria-implementation/">用户代理实施向导 User 
+        Agent Implementation Guide</a></li>
+      <li><a href="http://www.w3.org/tr/wai-aria-practices/">WAI-ARIA 创作实践 WAI-ARIA 
+        1.0 authoring practices</a></li>
+      <li><a href="http://www.w3.org/TR/wai-aria-primer/">WAI-ARIA 初级读本 WAI-ARIA 
+        Primer</a></li>
+      <li><a href="http://www.w3.org/TR/wai-aria-roadmap/">WAI-ARIA 发展计划 WAI-ARIA 
+        Roadmap</a></li>
+    </ul>
+	</ul>
+</div>
+
+
+<div class="slide">
+  <h1>WAI-ARIA 1.0<br>
+  http://www.w3.org/TR/wai-aria/
+  </h1>
+  <iframe src="http://www.w3.org/TR/wai-aria/" style="width: 100%; height: calc(100% - 1em);"> 
+  <a href="http://www.w3.org/TR/wai-aria/"></a></iframe> 
+</div>
+
+<div class="slide slanty"> 
+  <h1>Protocols and Formats Working Group </h1>
+  <h3>协议与格式工作组</h3>
+  <ul>
+    <li>即将更改为两个工作组 
+      <ul>
+        <li>ARIA相关工作将由ARIA工作组结束</li>
+        <li>无障碍审阅工作将由无障碍平台架构平台工作组完成</li>
+      </ul>
+    </li>
+    <li>当前重点工作 <a href="http://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA 1.1</a> 
+      <ul>
+        <li>在WAI-ARIA 1.0的基础上加入新的特征</li>
+        <li>允许模块根据具体需要添加相应特征 
+          <ul>
+            <li><a href="http://www.w3.org/TR/dpub-aria-1.0/">数字出版角色模块</a></li>
+            <li>图形模块</li>
+          </ul>
+        </li>
+        <li>无障碍API映射的增强 
+          <ul>
+            <li><a href="http://www.w3.org/TR/core-aam-1.1/">核心无障碍API映射 Core Accessibility 
+              API Mappings</a> </li>
+            <li><a href="http://www.w3.org/TR/html-aam-1.0/">HTML无障碍API映射 HTML 
+              Accessibility API Mappings</a></li>
+            <li><a href="http://www.w3.org/TR/svg-aam-1.0/">SVG无障碍API映射 SVG Accessibility 
+              API Mappings</a></li>
+            <li>数字出版无障碍API映射 Digital Publishing Accessibility API Mappings</li>
+          </ul>
+        </li>
+        <li>为开发人员提供指导的<a href="http://www.w3.org/TR/wai-aria-practices-1.1/">WAIR-ARIA创作实践 
+          WAI-ARIA Authoring Practices</a> </li>
+      </ul>
+    </li>
+    <li>相关任务组 
+      <ul>
+        <li>WAI-ARIA Task Force </li>
+        <li>WAI-ARIA User Agent Implementation Task Force</li>
+        <li>HTML Accessibility Task Force</li>
+        <li>Specification Accessibility Task Force</li>
+        <li>SVG Accessibility Task Force</li>
+        <li>Digital Publishing Accessibility Task Force</li>
+      </ul>
+    </li>
   </ul>
 </div>
 
@@ -229,7 +311,7 @@ src="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-white.gif" /></a></o
   <h3></h3>
   <ul>
     <li>案例</li>
-    <pre>&lt;img src=&quot;chairmanmao.jpg&quot; alt=&quot;毛泽东&quot; aria-describedby=&quot;p1&quot;&gt;<br />&lt;p id=&quot;p1&quot;&gt;毛泽东，字润之，笔名子任。湖南湘潭人。诗人，伟大的马克思主义者，无产阶级革命家、战略家和理论家，中国共产党、中国人民解放军和中华人民共和国的主要缔造者和领导人。&lt;/p&gt;</pre>
+    <pre>&lt;img src=&quot;chairmanmao.jpg&quot; alt=&quot;毛泽东&quot; aria-describedby=&quot;p1&quot;&gt;<br />&lt;p id=&quot;p1&quot;&gt;毛泽东，字润之，笔名子任。湖南湘潭人。诗人，伟大的马克思主义者……&lt;/p&gt;</pre>
   </ul>
 </div>
 
@@ -277,7 +359,7 @@ src="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-white.gif" /></a></o
   <h1>案例分析2</h1>
   <h3></h3>
   <ul>
-    <li>通过检查井字游戏的代码，检查并体会如下属性。 
+    <li>通过检查井字游戏的代码，体会如下属性。 
       <ul>
         <li>ARIA 1.0: [aria-dropeffect]</li>
         <li>ARIA 1.0: [aria-grabbed]</li>
