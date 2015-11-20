@@ -6,8 +6,8 @@
 <script language="" src="jquery-1.4.2.min.js" type="text/javascript">
 </script>
 <script type="text/javascript">
-$(document).ready(function () { 
-  var guess1 = new guess(1, 10, 'guess1_text', 'guess1_check', 'guess1_again', 'guess1_alert'); 
+$(document).ready(function() {
+  var guess1 = new guess(1, 10, 'guess1_text', 'guess1_check', 'guess1_again', 'guess1_alert');
 }); 
 
 // 
@@ -159,16 +159,16 @@ guess.prototype.handleTextKeyDown = function(evt) {
         this.$check.attr('disabled', 'true'); 
 
         // Set the focus on the play again button 
-        this.$again.focus(); 
+        // this.$again.focus(); 
       } 
       else { 
         // Game is still in progress. Set focus on the guess text box 
-        this.$text.focus(); 
+        // this.$text.focus(); 
       } 
     } 
     else { 
       // not a valid guess 
-      this.$text.focus(); 
+      // this.$text.focus(); 
     } 
 
     evt.stopPropagation; 
@@ -232,16 +232,16 @@ guess.prototype.handleCheckClick = function(evt) {
       this.$check.attr('disabled', 'true'); 
 
       // Set the focus on the play again button 
-      this.$again.focus(); 
+      // this.$again.focus(); 
     } 
     else { 
       // Game is still in progress. Set focus on the guess text box 
-      this.$text.focus(); 
+      // this.$text.focus(); 
     } 
   } 
   else { 
     // not a valid guess 
-    this.$text.focus(); 
+    // this.$text.focus(); 
   } 
      
   evt.stopPropagation; 
@@ -267,7 +267,7 @@ guess.prototype.handleAgainClick = function(evt) {
   this.newGame(); 
 
   // Set focus to the guess text box 
-  this.$text.focus(); 
+  // this.$text.focus(); 
      
   evt.stopPropagation; 
   return false; 
@@ -281,6 +281,7 @@ guess.prototype.handleAgainClick = function(evt) {
 // @return (boolean) true if guess is valid; false if guess is invalid 
 // 
 guess.prototype.validateGuess = function() { 
+  this.$alert.attr('tabindex', '0').focus();
   var val = this.$text.val(); 
 
   if (this.$text.val() == '') { 
@@ -355,11 +356,11 @@ guess.prototype.checkGuess = function() {
 
     <h2>猜数游戏</h2>
 	
-	<p><strong>说明：</strong> 在1到10之间任猜一个数字，然后按“检查我猜的数字”按钮用以检查是否正确。ARIA对话框会告诉结果，按“重新玩”按钮得新开始新一轮。</p>
+	<p tabindex="0" id="game_introduction" role="group"><strong>说明：</strong> 在1到10之间任猜一个数字，然后按“检查我猜的数字”按钮用以检查是否正确。ARIA对话框会告诉结果，按“重新玩”按钮得新开始新一轮。</p>
 
   <p class="input">
     <label id="guess1_label" for="guess1_text">在1和10之间猜一个数字</label>
-    <input type="text" id="guess1_text" size="8" aria-labelledby="guess1_label" aria-invalid="false">
+    <input type="text" id="guess1_text" size="8" aria-labelledby="guess1_label" aria-invalid="false" />
   </p>
 
   <p id="guess1_alert" role="alert" class="feedback">猜一把。</p>
